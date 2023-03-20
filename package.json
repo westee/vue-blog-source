@@ -5,23 +5,27 @@
   "author": "westee",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "upload": "npm run build; cd dist; git init; git add .; git commit -am \"init\"; git remote add origin git@github.com:jirengu-inc/vue-blog-preview.git; git push -f origin master;",
     "zip": "rm -f *.zip && zip  -r `git branch | grep '\\* ' | cut -d ' ' -f 2`.zip . -x 'node_modules/*'"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "element-ui": "^2.3.9",
+    "element-plus": "^2.3.1",
     "less": "^3.11.1",
     "less-loader": "^4.1.0",
     "marked": "^0.4.0",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@types/node": "^18.14.2",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vue/tsconfig": "^0.1.3",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -40,6 +44,7 @@
     "html-webpack-plugin": "^2.30.1",
     "node-less": "^1.0.0",
     "node-notifier": "^5.1.2",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "portfinder": "^1.0.13",
@@ -49,15 +54,16 @@
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "typescript": "~4.8.4",
     "uglifyjs-webpack-plugin": "^1.1.1",
+    "unplugin-auto-import": "^0.15.1",
+    "unplugin-vue-components": "^0.24.1",
     "url-loader": "^0.5.8",
+    "vite": "^4.1.4",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
-    "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "vue-tsc": "^1.2.0"
   },
   "engines": {
     "node": ">= 6.0.0",

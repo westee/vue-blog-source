@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from 'vue'
+// import Router from 'vue-router'
 /*
 import Index from '@/pages/Index/template.vue'
 import Login from '@/pages/Login/template.vue'
@@ -11,10 +11,13 @@ import User from '@/pages/User/template.vue'
 import My from '@/pages/My/template.vue'
 */
 
-import store from '../store'
+import {createRouter,createWebHistory } from 'vue-router'
+
+import {store} from '@/store'
+
 window.store = store
 
-Vue.use(Router)
+// Vue.use(Router)
 
 /*
 const router = new Router({
@@ -58,7 +61,8 @@ const router = new Router({
 })
 */
 
-const router =  new Router({
+const router = createRouter({
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
@@ -75,12 +79,12 @@ const router =  new Router({
     {
       path: '/edit/:blogId',
       component: () => import('@/pages/Edit/template.vue'),
-      meta: { requiresAuth: true }
+      meta: {requiresAuth: true}
     },
     {
       path: '/create',
       component: () => import('@/pages/Create/template.vue'),
-      meta: { requiresAuth: true }
+      meta: {requiresAuth: true}
     },
     {
       path: '/user/:userId',
@@ -89,7 +93,7 @@ const router =  new Router({
     {
       path: '/my',
       component: () => import('@/pages/My/template.vue'),
-      meta: { requiresAuth: true }
+      meta: {requiresAuth: true}
     },
     {
       path: '/register',
@@ -100,20 +104,22 @@ const router =  new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    store.dispatch('checkLogin').then(isLogin=>{
+    console.log("store")
+    console.log(store)
+    store.dispatch('checkLogin').then(isLogin => {
       if (!isLogin) {
         next({
           path: '/login',
-          query: { redirect: to.fullPath }
+          query: {redirect: to.fullPath}
         })
       } else {
         next()
-      }    
+      }
     })
   } else {
     next() // 确保一定要调用 next()
   }
 })
 
-export default router
+export {router}
 
