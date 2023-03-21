@@ -11,7 +11,9 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "lib": ["esnext", "dom"],
+    "jsx": "preserve"
   },
   "references": [
     {

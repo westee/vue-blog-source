@@ -66,7 +66,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/pages/Index/template.vue')
+      // component: () => import('@/pages/Index/template.vue')
+      component: () => import('@/pages/Index/index')
     },
     {
       path: '/login',
