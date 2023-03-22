@@ -10,7 +10,7 @@
     </template>
     <template v-if="isLogin">
       <h1><router-link to="/">Let's share</router-link></h1>
-      <router-link to="/create"><i class="edit el-icon-plus"></i></router-link>
+      <router-link to="/create"><div class="plus">+</div></router-link>
       <div class="user">
         <img class="avatar" :src="user.avatar" :alt="user.username" :title="user.username">
         <ul>
@@ -117,8 +117,6 @@ header.login {
   .avatar {
     width: 40px;
     height: 40px;
-    border: 1px solid #fff;
-    border-radius: 50%;
     margin-left: 15px;
   }
 
@@ -152,6 +150,12 @@ header.login {
     &:hover ul {
       display: block;
     }
+  }
+
+  .plus {
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
   }
 }
 
