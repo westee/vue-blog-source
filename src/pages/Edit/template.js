@@ -19,11 +19,11 @@ export default {
       this.content = res.data.content
       this.atIndex = res.data.atIndex
     })
-  }, 
+  },
 
   methods: {
     onEdit() {
-      blog.updateBlog({ blogId: this.blogId }, { title: this.title, content: this.content, description: this.description, atIndex: this.atIndex})
+      blog.updateBlog({ blogId: this.blogId, title: this.title, content: this.content, description: this.description, atIndex: this.atIndex})
         .then(res => {
           this.$message.success(res.msg)
           this.$router.push({ path: `/detail/${res.data.id}`})

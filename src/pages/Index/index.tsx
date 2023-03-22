@@ -4,21 +4,8 @@ import apiBlog from '@/api/blog'
 import './template.less'
 
 export default defineComponent({
-  name: 'xxx',
+  name: '首页',
   setup: () => {
-    interface User {
-      username: string;
-      avatar: string
-    }
-
-    interface Blog {
-      id: number;
-      title: string;
-      description: string;
-      createdAt: string;
-      user: User
-    }
-
     const page = ref(1);
     const total = ref(0);
     const blogs = ref<Blog[]>([]);
@@ -31,10 +18,9 @@ export default defineComponent({
     const {proxy}: any = getCurrentInstance()
 
     var router = useRouter();
-    const onPageChange = (newPage: string) => {
+    const onPageChange = (newPage: number) => {
 
       apiBlog.getIndexBlogs({page: newPage}).then((res: any) => {
-        console.log(res)
         blogs.value.push(...res.data)
         total.value = res.total
         page.value = res.page
