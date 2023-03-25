@@ -13,3 +13,11 @@ interface Blog {
   createdAt: string;
   user: User
 }
+
+enum RequestMethod {
+  GET = "GET",
+  POST = "POST",
+  PATCH = "PATCH",
+  DELETE = "DELETE"
+}
+

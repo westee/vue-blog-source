@@ -1,4 +1,4 @@
-import request from '@/helpers/request'
+import request from '../helpers/request'
 
 interface Url {
   GET_LIST: string;
@@ -46,7 +46,7 @@ interface BlogsResponse {
 
 export default {
   getBlogs({page = 1, userId, atIndex}: GetBlogsParams = {page: 1}): Promise<BlogsResponse> {
-    return request(URL.GET_LIST, 'GET', {page, userId, atIndex})
+    return request(URL.GET_LIST, RequestMethod.GET, {page, userId, atIndex})
   },
 
   getIndexBlogs({page = 1} = {page: 1}): Promise<BlogsResponse> {
@@ -62,11 +62,11 @@ export default {
   },
 
   updateBlog({blogId, title, content, description, atIndex}: UpdateBlogParams) {
-    return request(URL.UPDATE(blogId), 'PATCH', {title, content, description, atIndex})
+    return request(URL.UPDATE(blogId), RequestMethod.PATCH, {title, content, description, atIndex})
   },
 
   deleteBlog({blogId}: BlogId) {
-    return request(URL.DELETE(blogId), 'DELETE')
+    return request(URL.DELETE(blogId), RequestMethod.DELETE)
   },
 
   createBlog({title = '', content = '', description = '', atIndex = false}: CreateBlogParams = {
@@ -75,6 +75,6 @@ export default {
     description: '',
     atIndex: false
   }) {
-    return request(URL.CREATE, 'POST', {title, content, description, atIndex})
+    return request(URL.CREATE, RequestMethod.POST, {title, content, description, atIndex})
   }
 }

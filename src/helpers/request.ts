@@ -5,11 +5,18 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.baseURL = 'http://localhost:8080'
 
 
-export default function request(url, type = 'GET', data = {}) {
+type RequestOption = {
+  url: string,
+  method: RequestMethod,
+  params?: any,
+  data?: any
+}
+
+export default function request<T>(url: string, type = RequestMethod.GET, data = {}): Promise<T> {
   return new Promise((resolve, reject) => {
-    let option = {
+    let option: RequestOption = {
       url,
-      method: type,
+      method:  type,
     }
     if(type.toLowerCase() === 'get') {
       option.params = data
